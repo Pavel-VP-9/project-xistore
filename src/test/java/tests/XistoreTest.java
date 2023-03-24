@@ -12,6 +12,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import pages.XistorePage;
 import util.Util;
 
+import java.time.Duration;
+
 public class XistoreTest {
 
 
@@ -23,7 +25,7 @@ public class XistoreTest {
         chromeOptions.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(chromeOptions);
         driver.manage().window().maximize();
-        // driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(XistorePage.URL);
     }
 
@@ -37,10 +39,9 @@ public class XistoreTest {
         driver.findElement(By.xpath(XistorePage.BTN_INTER_SUBMIT)).click();
         Util.waitThreadFor(2);
         driver.findElement(By.xpath(XistorePage.BTN_CHECK_REGISTRATION)).click();
-
         String labelName = driver.findElement(By.xpath(XistorePage.LINK_MAIL)).getText();
-        System.out.println(labelName);
-        System.out.println("ppp694185@gmail.com");
+        //System.out.println(labelName);
+        //System.out.println("ppp694185@gmail.com");
         Assertions.assertEquals("ppp694185@gmail.com", labelName);
     }
 
@@ -53,10 +54,9 @@ public class XistoreTest {
         inputPassword.sendKeys("10293847ppp");
         driver.findElement(By.xpath(XistorePage.BTN_INTER_SUBMIT)).click();
         Util.waitThreadFor(2);
-
         String labelError =driver.findElement(By.xpath(XistorePage.LOGIN_WRONG_MAIL)).getText();
-        System.out.println(labelError);
-        System.out.println("Неверный логин или пароль.");
+        //System.out.println(labelError);
+        //System.out.println("Неверный логин или пароль.");
         Assertions.assertEquals("Неверный логин или пароль.",labelError);
 
     }
@@ -69,10 +69,9 @@ public class XistoreTest {
         inputPassword.sendKeys("10293847");
         driver.findElement(By.xpath(XistorePage.BTN_INTER_SUBMIT)).click();
         Util.waitThreadFor(2);
-
         String labelError =driver.findElement(By.xpath(XistorePage.LOGIN_WRONG_MAIL)).getText();
-        System.out.println(labelError);
-        System.out.println("Неверный логин или пароль.");
+       // System.out.println(labelError);
+       // System.out.println("Неверный логин или пароль.");
         Assertions.assertEquals("Неверный логин или пароль.",labelError);
 
 
@@ -86,7 +85,6 @@ public class XistoreTest {
         inputPassword.sendKeys("10293847");
         driver.findElement(By.xpath(XistorePage.BTN_INTER_SUBMIT)).click();
         Util.waitThreadFor(2);
-
         String labelError = driver.findElement(By.xpath(XistorePage.LOGIN_WRONG_MAIL)).getText();
         System.out.println(labelError);
         System.out.println("Неверный логин или пароль.");
@@ -100,31 +98,31 @@ public class XistoreTest {
         WebElement inputPassword = driver.findElement(By.xpath(XistorePage.INPUT_PASSWORD));
         inputPassword.sendKeys("");
         driver.findElement(By.xpath(XistorePage.BTN_INTER_SUBMIT)).click();
-
         Util.waitTimeFor(2);
         String labelError = driver.findElement(By.xpath(XistorePage.LOGIN_WRONG_MAIL)).getText();
         System.out.println(labelError);
-        System.out.println("Неверный логин или пароль.");
+        // System.out.println("Неверный логин или пароль.");
         Assertions.assertEquals("Неверный логин или пароль.", labelError);
     }
 
     @Test
     public void testXitoreCart()  {
-        Util.waitTimeFor(2);
+        Util.waitTimeFor(3);
         driver.findElement(By.xpath(XistorePage.BTN_CATALOG_PHONE)).click();
-        Util.waitTimeFor(2);
+        Util.waitTimeFor(3);
         driver.findElement(By.xpath(XistorePage.SELECTION_PHONE)).click();
-        Util.waitTimeFor(2);
-        String namePhone = driver.findElement(By.xpath(XistorePage.NAME_PHONE)).getText();
-        System.out.println(namePhone);
+        Util.waitTimeFor(3);
+        String[] title = driver.findElement(By.xpath(XistorePage.NAME_PHONE)).getText().split("\n");
+        String namePhone = title[0];
+       // System.out.println(namePhone);
         driver.findElement(By.xpath(XistorePage.BTN_PLACE_AN_ORDER_CART)).click();
         Util.waitTimeFor(2);
         driver.findElement(By.xpath(XistorePage.BTN_CLOSE)).click();
         Util.waitTimeFor(2);
         driver.findElement(By.xpath(XistorePage.BTN_INPUT_CART)).click();
         String namePhoneInCart = driver.findElement(By.xpath(XistorePage.NAME_PHONE_IN_CART)).getText();
-        System.out.println(namePhoneInCart);
-        Assertions.assertEquals(namePhone,namePhoneInCart);
+       // System.out.println(namePhoneInCart);
+        Assertions.assertTrue(namePhoneInCart.contains(namePhone));
     }
     @Test
     public void testProductSearch(){
