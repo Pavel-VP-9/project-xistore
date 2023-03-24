@@ -13,6 +13,7 @@ import pages.XistorePage;
 import util.Util;
 
 import java.time.Duration;
+import java.util.List;
 
 public class XistoreTest {
 
@@ -126,7 +127,17 @@ public class XistoreTest {
     }
     @Test
     public void testProductSearch(){
-
+        WebElement inputNameProduct = driver.findElement(By.xpath(XistorePage.INPUT_NAME_PRODUCT));
+        inputNameProduct.sendKeys("Xiaomi Redmi Note 11");
+        String nameMyProduct = "Xiaomi Redmi Note 11";
+        Util.waitTimeFor(2);
+        driver.findElement(By.xpath(XistorePage.BTN_SEARCH)).click();
+        List<WebElement> listLinkOfPhone = driver.findElements(By.xpath(XistorePage.LIST_LINK_MOBILE_PHONE));
+        Assertions.assertFalse(listLinkOfPhone.isEmpty());
+        System.out.println(listLinkOfPhone.isEmpty());
+        String firstPhone = listLinkOfPhone.get(0).getText();
+        System.out.println(firstPhone);
+        Assertions.assertTrue(firstPhone.contains(nameMyProduct));
     }
 
     @AfterEach
