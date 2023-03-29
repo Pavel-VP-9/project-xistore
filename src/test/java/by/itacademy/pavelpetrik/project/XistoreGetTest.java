@@ -10,7 +10,8 @@ public class XistoreGetTest {
     public void testXistore1() {
 
 
-        String url = "https://xistore.by/catalog/irrigatory/irrigator_enchen_mint_3/";
+       //String url = "https://xistore.by/catalog/irrigatory/irrigator_enchen_mint_3/";
+        String url = "https://xistore.by/search/?q=Enchen+Mint+3";
         when().get(url).
                 then().assertThat().statusCode(200);
     }

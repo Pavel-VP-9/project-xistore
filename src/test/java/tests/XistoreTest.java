@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import pages.XistorePage;
+import steps.XistoreStep;
 import util.Util;
 
 import java.time.Duration;
@@ -32,18 +33,22 @@ public class XistoreTest {
 
     @Test
     public void testXistoreLogin() {
-        driver.findElement(By.xpath(XistorePage.BTN_ENTER)).click();
-        WebElement inputMail = driver.findElement(By.xpath(XistorePage.INPUT_MAIL));
-        inputMail.sendKeys("ppp694185@gmail.com");
-        WebElement inputPassword = driver.findElement(By.xpath(XistorePage.INPUT_PASSWORD));
-        inputPassword.sendKeys("10293847ppp");
-        driver.findElement(By.xpath(XistorePage.BTN_INTER_SUBMIT)).click();
-        Util.waitThreadFor(2);
-        driver.findElement(By.xpath(XistorePage.BTN_CHECK_REGISTRATION)).click();
-        String labelName = driver.findElement(By.xpath(XistorePage.LINK_MAIL)).getText();
-        //System.out.println(labelName);
-        //System.out.println("ppp694185@gmail.com");
-        Assertions.assertEquals("ppp694185@gmail.com", labelName);
+        XistoreStep xistoreStep = new XistoreStep(driver);
+        Assertions.assertTrue(xistoreStep.doXistoreLogin());
+
+
+//        driver.findElement(By.xpath(XistorePage.BTN_ENTER)).click();
+//        WebElement inputMail = driver.findElement(By.xpath(XistorePage.INPUT_MAIL));
+//        inputMail.sendKeys("ppp694185@gmail.com");
+//        WebElement inputPassword = driver.findElement(By.xpath(XistorePage.INPUT_PASSWORD));
+//        inputPassword.sendKeys("10293847ppp");
+//        driver.findElement(By.xpath(XistorePage.BTN_INTER_SUBMIT)).click();
+//        Util.waitThreadFor(2);
+//        driver.findElement(By.xpath(XistorePage.BTN_CHECK_REGISTRATION)).click();
+//        String labelName = driver.findElement(By.xpath(XistorePage.LINK_MAIL)).getText();
+//        //System.out.println(labelName);
+//        //System.out.println("ppp694185@gmail.com");
+//        Assertions.assertEquals("ppp694185@gmail.com", labelName);
     }
 
     @Test
@@ -108,6 +113,7 @@ public class XistoreTest {
 
     @Test
     public void testXitoreCart()  {
+
         Util.waitTimeFor(3);
         driver.findElement(By.xpath(XistorePage.BTN_CATALOG_PHONE)).click();
         Util.waitTimeFor(3);
