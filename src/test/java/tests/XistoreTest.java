@@ -97,7 +97,7 @@ public class XistoreTest {
         Assertions.assertEquals("Неверный логин или пароль.", labelError);
     }
     @Test
-    public void testXitoreWrongMailPassword1() {
+    public void testXitoreEmptyFieldsMailPassword() {
         driver.findElement(By.xpath(XistorePage.BTN_ENTER)).click();
         WebElement inputMail = driver.findElement(By.xpath(XistorePage.INPUT_MAIL));
         inputMail.sendKeys("");
