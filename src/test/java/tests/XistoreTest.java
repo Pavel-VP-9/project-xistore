@@ -1,14 +1,14 @@
 package tests;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import driver.DriverSetup;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import pages.LoginPage;
+import pages.UserPage;
 import pages.XistorePage;
 import steps.XistoreStep;
 import util.Util;
@@ -19,22 +19,26 @@ import java.util.List;
 public class XistoreTest {
 
 
-    WebDriver driver;
+    WebDriver driver  = DriverSetup.getDriver();
 
     @BeforeEach
     public void warmUp() {
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--remote-allow-origins=*");
-        driver = new ChromeDriver(chromeOptions);
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+//        ChromeOptions chromeOptions = new ChromeOptions();
+//        chromeOptions.addArguments("--remote-allow-origins=*");
+//        driver = new ChromeDriver(chromeOptions);
+//        driver.manage().window().maximize();
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(XistorePage.URL);
     }
 
     @Test
+    @DisplayName("Проверка входа с корректными данными (электронная почта и пароль)")
     public void testXistoreLogin() {
         XistoreStep xistoreStep = new XistoreStep(driver);
-        Assertions.assertTrue(xistoreStep.doXistoreLogin());
+        xistoreStep.doXistoreLogin(UserPage.EMAIL,UserPage.PASSWORD);
+        Assertions.assertEquals(UserPage.EMAIL, xistoreStep.getUserName());
+
 
 
 //        driver.findElement(By.xpath(XistorePage.BTN_ENTER)).click();
@@ -52,7 +56,8 @@ public class XistoreTest {
     }
 
     @Test
-    public void testXitoreWrongMail() {
+    @DisplayName("Проверка входа с некорректными данными (электронная почта) и корректными данными (пароль)")
+    public void testXistoreWrongMail() {
         XistoreStep xistoreStep = new XistoreStep(driver);
         Assertions.assertTrue(xistoreStep.doXistoreWrongMail());
 
@@ -70,6 +75,7 @@ public class XistoreTest {
 
     }
     @Test
+    @DisplayName("Проверка входа с корректными данными (электронная почта) и некорректными данными (пароль)")
     public void testXistoreWrongPassword() {
         XistoreStep xistoreStep = new XistoreStep(driver);
         Assertions.assertTrue(xistoreStep.doXistoreWrongPassword());
@@ -89,6 +95,7 @@ public class XistoreTest {
 
     }
     @Test
+    @DisplayName("Проверка входа с некорректными данными (электронная почта и пароль)")
     public void testXistoreWrongMailPassword() {
         XistoreStep xistoreStep = new XistoreStep(driver);
         Assertions.assertTrue(xistoreStep.doXistoreWrongMailPassword());
@@ -107,6 +114,7 @@ public class XistoreTest {
 //        Assertions.assertEquals("Неверный логин или пароль.", labelError);
     }
     @Test
+    @DisplayName("Проверка входа с пустыми полями данных (электронная почта и пароль)")
     public void testXistoreEmptyFieldsMailPassword() {
         XistoreStep xistoreStep = new XistoreStep(driver);
         Assertions.assertTrue(xistoreStep.doXistoreEmptyFieldsMailPassword());
@@ -125,6 +133,7 @@ public class XistoreTest {
     }
 
     @Test
+    @DisplayName("Проверка наличия и соответствия выбранного товара в профиле (Корзина) ")
     public void testXistoreCart()  {
 
         XistoreStep xistoreStep = new XistoreStep(driver);
@@ -149,6 +158,7 @@ public class XistoreTest {
 //        Assertions.assertTrue(namePhoneInCart.contains(namePhone));
     }
     @Test
+    @DisplayName("Поиск товара в поле (Что хотите купить) ")
     public void testProductSearch(){
         WebElement inputNameProduct = driver.findElement(By.xpath(XistorePage.INPUT_NAME_PRODUCT));
         inputNameProduct.sendKeys("Xiaomi Redmi Note 11");
@@ -164,8 +174,11 @@ public class XistoreTest {
     }
 
     @AfterEach
-    public void tearDown() {
-        driver.quit();
+   // public void tearDown() {driver.quit();}
+
+//    }
+    public void closeDriver() {
+        DriverSetup.close();
     }
 
 }
