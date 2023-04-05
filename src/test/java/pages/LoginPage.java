@@ -23,18 +23,17 @@ public class LoginPage {
     }
     public void checkRegistrashion(){
         driver.findElement(By.xpath(XistorePage.BTN_CHECK_REGISTRATION)).click();
-        Util.waitTimeFor(3);
+      //  Util.waitTimeFor(3);
     }
-
 //    public String checkRegistrashion() {
-//
-//       // String labelName = driver.findElement(By.xpath(XistorePage.LINK_MAIL)).getText();
-//       // return labelName;
+//       String labelName = driver.findElement(By.xpath(XistorePage.LINK_MAIL)).getText();
+//        return labelName;
 //        return driver.findElement(By.xpath(XistorePage.LINK_MAIL)).getText(); }
-
     public String getUserName() {
-
         return driver.findElement(By.xpath(XistorePage.LINK_MAIL)).getText();
 
+    }
+    public String getLabelError() {
+        return driver.findElement(By.xpath(XistorePage.LOGIN_WRONG_MAIL)).getText();
     }
 }

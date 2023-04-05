@@ -37,9 +37,9 @@ public class XistoreTest {
     public void testXistoreLogin() {
         XistoreStep xistoreStep = new XistoreStep(driver);
         xistoreStep.doXistoreLogin(UserPage.EMAIL,UserPage.PASSWORD);
+//        String q = UserPage.EMAIL; String w = xistoreStep.getUserName();
+//        System.out.println(q + " " + w);
         Assertions.assertEquals(UserPage.EMAIL, xistoreStep.getUserName());
-
-
 
 //        driver.findElement(By.xpath(XistorePage.BTN_ENTER)).click();
 //        WebElement inputMail = driver.findElement(By.xpath(XistorePage.INPUT_MAIL));
@@ -59,7 +59,9 @@ public class XistoreTest {
     @DisplayName("Проверка входа с некорректными данными (электронная почта) и корректными данными (пароль)")
     public void testXistoreWrongMail() {
         XistoreStep xistoreStep = new XistoreStep(driver);
-        Assertions.assertTrue(xistoreStep.doXistoreWrongMail());
+        xistoreStep.doXistoreWrongMail(UserPage.ERROR_EMAIL,UserPage.PASSWORD);
+        Assertions.assertEquals(UserPage.TEXT_OF_ERROR_MASSAGE,xistoreStep.getLabelError());
+
 
 //        driver.findElement(By.xpath(XistorePage.BTN_ENTER)).click();
 //        WebElement inputMail = driver.findElement(By.xpath(XistorePage.INPUT_MAIL));
@@ -77,6 +79,7 @@ public class XistoreTest {
     @Test
     @DisplayName("Проверка входа с корректными данными (электронная почта) и некорректными данными (пароль)")
     public void testXistoreWrongPassword() {
+
         XistoreStep xistoreStep = new XistoreStep(driver);
         Assertions.assertTrue(xistoreStep.doXistoreWrongPassword());
 
@@ -88,8 +91,8 @@ public class XistoreTest {
 //        driver.findElement(By.xpath(XistorePage.BTN_INTER_SUBMIT)).click();
 //        Util.waitThreadFor(2);
 //        String labelError =driver.findElement(By.xpath(XistorePage.LOGIN_WRONG_MAIL)).getText();
-//       // System.out.println(labelError);
-//       // System.out.println("Неверный логин или пароль.");
+//        System.out.println(labelError);
+//        System.out.println("Неверный логин или пароль.");
 //        Assertions.assertEquals("Неверный логин или пароль.",labelError);
 
 
@@ -101,7 +104,7 @@ public class XistoreTest {
         Assertions.assertTrue(xistoreStep.doXistoreWrongMailPassword());
 
 
-//        driver.findElement(By.xpath(XistorePage.BTN_ENTER)).click();
+//
 //        WebElement inputMail = driver.findElement(By.xpath(XistorePage.INPUT_MAIL));
 //        inputMail.sendKeys("ppp");
 //        WebElement inputPassword = driver.findElement(By.xpath(XistorePage.INPUT_PASSWORD));
