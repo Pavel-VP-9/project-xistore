@@ -81,7 +81,8 @@ public class XistoreTest {
     public void testXistoreWrongPassword() {
 
         XistoreStep xistoreStep = new XistoreStep(driver);
-        Assertions.assertTrue(xistoreStep.doXistoreWrongPassword());
+        xistoreStep.doXistoreWrongPassword(UserPage.EMAIL,UserPage.ERROR_PASSWORD);
+        Assertions.assertEquals(UserPage.TEXT_OF_ERROR_MASSAGE,xistoreStep.getLabelError());
 
 //        driver.findElement(By.xpath(XistorePage.BTN_ENTER)).click();
 //        WebElement inputMail = driver.findElement(By.xpath(XistorePage.INPUT_MAIL));
@@ -101,8 +102,8 @@ public class XistoreTest {
     @DisplayName("Проверка входа с некорректными данными (электронная почта и пароль)")
     public void testXistoreWrongMailPassword() {
         XistoreStep xistoreStep = new XistoreStep(driver);
-        Assertions.assertTrue(xistoreStep.doXistoreWrongMailPassword());
-
+        xistoreStep.doXistoreWrongMailPassword(UserPage.ERROR_EMAIL,UserPage.ERROR_PASSWORD);
+        Assertions.assertEquals(UserPage.TEXT_OF_ERROR_MASSAGE,xistoreStep.getLabelError());
 
 //
 //        WebElement inputMail = driver.findElement(By.xpath(XistorePage.INPUT_MAIL));
@@ -120,7 +121,8 @@ public class XistoreTest {
     @DisplayName("Проверка входа с пустыми полями данных (электронная почта и пароль)")
     public void testXistoreEmptyFieldsMailPassword() {
         XistoreStep xistoreStep = new XistoreStep(driver);
-        Assertions.assertTrue(xistoreStep.doXistoreEmptyFieldsMailPassword());
+        xistoreStep.doXistoreEmptyFieldsMailPassword(UserPage.EMPTY_EMAIL,UserPage.EMPTY_PASSWORD);
+        Assertions.assertEquals(UserPage.TEXT_OF_ERROR_MASSAGE,xistoreStep.getLabelError());
 
 //        driver.findElement(By.xpath(XistorePage.BTN_ENTER)).click();
 //        WebElement inputMail = driver.findElement(By.xpath(XistorePage.INPUT_MAIL));
@@ -141,8 +143,6 @@ public class XistoreTest {
 
         XistoreStep xistoreStep = new XistoreStep(driver);
         Assertions.assertTrue(xistoreStep.doXistoreCart());
-
-
 //        Util.waitTimeFor(3);
 //        driver.findElement(By.xpath(XistorePage.BTN_CATALOG_PHONE)).click();
 //        Util.waitTimeFor(3);
@@ -166,7 +166,7 @@ public class XistoreTest {
         WebElement inputNameProduct = driver.findElement(By.xpath(XistorePage.INPUT_NAME_PRODUCT));
         inputNameProduct.sendKeys("Xiaomi Redmi Note 11");
         String nameMyProduct = "Xiaomi Redmi Note 11";
-        Util.waitTimeFor(2);
+       // Util.waitTimeFor(2);
         driver.findElement(By.xpath(XistorePage.BTN_SEARCH)).click();
         List<WebElement> listLinkOfPhone = driver.findElements(By.xpath(XistorePage.LIST_LINK_MOBILE_PHONE));
         Assertions.assertFalse(listLinkOfPhone.isEmpty());

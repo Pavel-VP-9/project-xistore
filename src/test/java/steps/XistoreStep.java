@@ -13,6 +13,7 @@ public class XistoreStep {
         this.driver = driver;
 
     }
+
     LoginPage loginPage = new LoginPage();
 
     public void doXistoreLogin(String email, String password) {
@@ -35,18 +36,20 @@ public class XistoreStep {
 //         System.out.println(UserPage.EMAIL);
 //         return labelName.equals(UserPage.EMAIL);
     }
+
     public String getUserName() {
         return loginPage.getUserName();
     }
+
     public void doXistoreWrongMail(String email, String password) {
 
         loginPage.openLoginForm();
         loginPage.inputEmail(email);
         loginPage.inputPassword(password);
         loginPage.interSubmit();
-        loginPage.checkRegistrashion();
 
     }
+
     public String getLabelError() {
         return loginPage.getLabelError();
     }
@@ -61,69 +64,81 @@ public class XistoreStep {
 //        String labelError = driver.findElement(By.xpath(XistorePage.LOGIN_WRONG_MAIL)).getText();
 //        return  labelError.equals("Неверный логин или пароль.");
 
-    public boolean doXistoreWrongPassword(){
+    public void doXistoreWrongPassword(String email, String password) {
 
-        driver.findElement(By.xpath(XistorePage.BTN_ENTER)).click();
-        WebElement inputMail = driver.findElement(By.xpath(XistorePage.INPUT_MAIL));
-        inputMail.sendKeys("ppp694185@gmail.com");
-        WebElement inputPassword = driver.findElement(By.xpath(XistorePage.INPUT_PASSWORD));
-        inputPassword.sendKeys("10293847");
-        driver.findElement(By.xpath(XistorePage.BTN_INTER_SUBMIT)).click();
-        String labelError =driver.findElement(By.xpath(XistorePage.LOGIN_WRONG_MAIL)).getText();
-        // System.out.println(labelError);
-        // System.out.println("Неверный логин или пароль.");
-        return labelError.equals("Неверный логин или пароль.");
-        //Assertions.assertEquals("Неверный логин или пароль.",labelError);
-    }
-    public boolean doXistoreWrongMailPassword() {
-
-        driver.findElement(By.xpath(XistorePage.BTN_ENTER)).click();
-        WebElement inputMail = driver.findElement(By.xpath(XistorePage.INPUT_MAIL));
-        inputMail.sendKeys("ppp");
-        WebElement inputPassword = driver.findElement(By.xpath(XistorePage.INPUT_PASSWORD));
-        inputPassword.sendKeys("10293847");
-        driver.findElement(By.xpath(XistorePage.BTN_INTER_SUBMIT)).click();
-        //Util.waitThreadFor(2);
-        String labelError = driver.findElement(By.xpath(XistorePage.LOGIN_WRONG_MAIL)).getText();
-        System.out.println(labelError);
-        System.out.println("Неверный логин или пароль.");
-        return labelError.equals("Неверный логин или пароль.");
-       // Assertions.assertEquals("Неверный логин или пароль.", labelError);
+        loginPage.openLoginForm();
+        loginPage.inputEmail(email);
+        loginPage.inputPassword(password);
+        loginPage.interSubmit();
 
     }
-    public boolean doXistoreEmptyFieldsMailPassword() {
 
-        driver.findElement(By.xpath(XistorePage.BTN_ENTER)).click();
-        WebElement inputMail = driver.findElement(By.xpath(XistorePage.INPUT_MAIL));
-        inputMail.sendKeys(" ");
-        WebElement inputPassword = driver.findElement(By.xpath(XistorePage.INPUT_PASSWORD));
-        inputPassword.sendKeys(" ");
-        driver.findElement(By.xpath(XistorePage.BTN_INTER_SUBMIT)).click();
-      //  Util.waitTimeFor(2);
-        String labelError = driver.findElement(By.xpath(XistorePage.LOGIN_WRONG_MAIL)).getText();
-        System.out.println(labelError);
-        System.out.println("Неверный логин или пароль.");
-        return labelError.equals("Неверный логин или пароль.");
-       // Assertions.assertEquals("Неверный логин или пароль.", labelError);
+    //    public boolean doXistoreWrongPassword(){
+//        driver.findElement(By.xpath(XistorePage.BTN_ENTER)).click();
+//        WebElement inputMail = driver.findElement(By.xpath(XistorePage.INPUT_MAIL));
+//        inputMail.sendKeys("ppp694185@gmail.com");
+//        WebElement inputPassword = driver.findElement(By.xpath(XistorePage.INPUT_PASSWORD));
+//        inputPassword.sendKeys("10293847");
+//        driver.findElement(By.xpath(XistorePage.BTN_INTER_SUBMIT)).click();
+//        String labelError =driver.findElement(By.xpath(XistorePage.LOGIN_WRONG_MAIL)).getText();
+//        return labelError.equals("Неверный логин или пароль.");
+//
+//    }
+    public void doXistoreWrongMailPassword(String email, String password) {
+
+        loginPage.openLoginForm();
+        loginPage.inputEmail(email);
+        loginPage.inputPassword(password);
+        loginPage.interSubmit();
+
     }
+//    public boolean doXistoreWrongMailPassword() {
+//        driver.findElement(By.xpath(XistorePage.BTN_ENTER)).click();
+//        WebElement inputMail = driver.findElement(By.xpath(XistorePage.INPUT_MAIL));
+//        inputMail.sendKeys("ppp");
+//        WebElement inputPassword = driver.findElement(By.xpath(XistorePage.INPUT_PASSWORD));
+//        inputPassword.sendKeys("10293847");
+//        driver.findElement(By.xpath(XistorePage.BTN_INTER_SUBMIT)).click();
+//        //Util.waitThreadFor(2);
+//        String labelError = driver.findElement(By.xpath(XistorePage.LOGIN_WRONG_MAIL)).getText();
+//        System.out.println(labelError);
+//        System.out.println("Неверный логин или пароль.");
+//        return labelError.equals("Неверный логин или пароль.");}
+    public void doXistoreEmptyFieldsMailPassword(String email, String password) {
+
+        loginPage.openLoginForm();
+        loginPage.inputEmail(email);
+        loginPage.inputPassword(password);
+        loginPage.interSubmit();
+    }
+
+//    public boolean doXistoreEmptyFieldsMailPassword() {
+//        driver.findElement(By.xpath(XistorePage.BTN_ENTER)).click();
+//        WebElement inputMail = driver.findElement(By.xpath(XistorePage.INPUT_MAIL));
+//        inputMail.sendKeys(" ");
+//        WebElement inputPassword = driver.findElement(By.xpath(XistorePage.INPUT_PASSWORD));
+//        inputPassword.sendKeys(" ");
+//        driver.findElement(By.xpath(XistorePage.BTN_INTER_SUBMIT)).click();
+//        String labelError = driver.findElement(By.xpath(XistorePage.LOGIN_WRONG_MAIL)).getText();
+//        System.out.println(labelError);
+//        System.out.println("Неверный логин или пароль.");
+//        return labelError.equals("Неверный логин или пароль.");
+//    }
+
     public boolean doXistoreCart() {
-      //  Util.waitTimeFor(3);
+
         driver.findElement(By.xpath(XistorePage.BTN_CATALOG_PHONE)).click();
-      //  Util.waitTimeFor(3);
         driver.findElement(By.xpath(XistorePage.SELECTION_PHONE)).click();
-      //  Util.waitTimeFor(3);
         String[] title = driver.findElement(By.xpath(XistorePage.NAME_PHONE)).getText().split("\n");
         String namePhone = title[0];
-        System.out.println(namePhone);
+       // System.out.println(namePhone);
         driver.findElement(By.xpath(XistorePage.BTN_PLACE_AN_ORDER_CART)).click();
-      //  Util.waitTimeFor(2);
         driver.findElement(By.xpath(XistorePage.BTN_CLOSE)).click();
-      //  Util.waitTimeFor(2);
         driver.findElement(By.xpath(XistorePage.BTN_INPUT_CART)).click();
         String namePhoneInCart = driver.findElement(By.xpath(XistorePage.NAME_PHONE_IN_CART)).getText();
-        System.out.println(namePhoneInCart);
+        //System.out.println(namePhoneInCart);
         return namePhoneInCart.contains(namePhone);
-       // Assertions.assertTrue(namePhoneInCart.contains(namePhone));
+        // Assertions.assertTrue(namePhoneInCart.contains(namePhone));
     }
 
 }
