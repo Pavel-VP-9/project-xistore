@@ -5,15 +5,9 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import pages.LoginPage;
 import pages.UserPage;
 import pages.XistorePage;
 import steps.XistoreStep;
-import util.Util;
-
-import java.time.Duration;
 import java.util.List;
 
 public class XistoreTest {
@@ -22,14 +16,12 @@ public class XistoreTest {
 
     @BeforeEach
     public void warmUp() {
-
         driver.get(XistorePage.URL);
     }
 
     @Test
     @DisplayName("Проверка входа с корректными данными (электронная почта и пароль)")
     public void testXistoreLogin() {
-
         XistoreStep xistoreStep = new XistoreStep(driver);
         xistoreStep.doXistoreLogin(UserPage.EMAIL, UserPage.PASSWORD);
         Assertions.assertEquals(UserPage.EMAIL, xistoreStep.getUserName());
@@ -69,7 +61,6 @@ public class XistoreTest {
     @Test
     @DisplayName("Проверка входа с корректными данными (электронная почта) и некорректными данными (пароль)")
     public void testXistoreWrongPassword() {
-
         XistoreStep xistoreStep = new XistoreStep(driver);
         xistoreStep.doXistoreWrongPassword(UserPage.EMAIL, UserPage.ERROR_PASSWORD);
         Assertions.assertEquals(UserPage.TEXT_OF_ERROR_MASSAGE, xistoreStep.getLabelError());
@@ -94,7 +85,6 @@ public class XistoreTest {
         xistoreStep.doXistoreWrongMailPassword(UserPage.ERROR_EMAIL,UserPage.ERROR_PASSWORD);
         Assertions.assertEquals(UserPage.TEXT_OF_ERROR_MASSAGE,xistoreStep.getLabelError());
 
-//
 //        WebElement inputMail = driver.findElement(By.xpath(XistorePage.INPUT_MAIL));
 //        inputMail.sendKeys("ppp");
 //        WebElement inputPassword = driver.findElement(By.xpath(XistorePage.INPUT_PASSWORD));
@@ -129,9 +119,9 @@ public class XistoreTest {
     @Test
     @DisplayName("Проверка наличия и соответствия выбранного товара в профиле (Корзина) ")
     public void testXistoreCart()  {
-
         XistoreStep xistoreStep = new XistoreStep(driver);
         Assertions.assertTrue(xistoreStep.doXistoreCart());
+
 //        Util.waitTimeFor(3);
 //        driver.findElement(By.xpath(XistorePage.BTN_CATALOG_PHONE)).click();
 //        Util.waitTimeFor(3);
@@ -149,6 +139,7 @@ public class XistoreTest {
 //        System.out.println(namePhoneInCart);
 //        Assertions.assertTrue(namePhoneInCart.contains(namePhone));
     }
+
     @Test
     @DisplayName("Поиск товара в поле (Что хотите купить) ")
     public void testProductSearch(){

@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.LoginPage;
+import pages.ProductPage;
 import pages.XistorePage;
 
 public class XistoreStep {
@@ -12,6 +13,7 @@ public class XistoreStep {
     public XistoreStep(WebDriver driver) {
         this.driver = driver;
     }
+
 
     LoginPage loginPage = new LoginPage();
     public void doXistoreLogin(String email, String password) {
@@ -70,13 +72,16 @@ public class XistoreStep {
 //        System.out.println("Неверный логин или пароль.");
 //        return labelError.equals("Неверный логин или пароль.");
 //    }
+//    ProductPage productPage = new ProductPage();
+//
+//    public void doXistoreCart(String namePhone, String namePhoneInCart) {
 
-    public boolean doXistoreCart() {
+        public boolean doXistoreCart() {
         driver.findElement(By.xpath(XistorePage.BTN_CATALOG_PHONE)).click();
         driver.findElement(By.xpath(XistorePage.SELECTION_PHONE)).click();
         String[] title = driver.findElement(By.xpath(XistorePage.NAME_PHONE)).getText().split("\n");
         String namePhone = title[0];
-       // System.out.println(namePhone);
+        //System.out.println(namePhone);
         driver.findElement(By.xpath(XistorePage.BTN_PLACE_AN_ORDER_CART)).click();
         driver.findElement(By.xpath(XistorePage.BTN_CLOSE)).click();
         driver.findElement(By.xpath(XistorePage.BTN_INPUT_CART)).click();
@@ -84,6 +89,8 @@ public class XistoreStep {
         //System.out.println(namePhoneInCart);
         return namePhoneInCart.contains(namePhone);
         // Assertions.assertTrue(namePhoneInCart.contains(namePhone));
+
     }
+
 
 }

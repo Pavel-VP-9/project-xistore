@@ -10,9 +10,11 @@ public class LoginPage {
     WebDriver driver  = DriverSetup.getDriver();
 
     public void openLoginForm() {
-         driver.findElement(By.xpath(XistorePage.BTN_ENTER)).click();
+
+        driver.findElement(By.xpath(XistorePage.BTN_ENTER)).click();
     }
     public void inputEmail(String email) {
+
         driver.findElement(By.xpath(XistorePage.INPUT_MAIL)).sendKeys(email);
     }
     public void inputPassword(String password) {
@@ -23,7 +25,6 @@ public class LoginPage {
     }
     public void checkRegistrashion(){
         driver.findElement(By.xpath(XistorePage.BTN_CHECK_REGISTRATION)).click();
-      //  Util.waitTimeFor(3);
     }
 //    public String checkRegistrashion() {
 //       String labelName = driver.findElement(By.xpath(XistorePage.LINK_MAIL)).getText();
@@ -36,4 +37,5 @@ public class LoginPage {
     public String getLabelError() {
         return driver.findElement(By.xpath(XistorePage.LOGIN_WRONG_MAIL)).getText();
     }
+
 }

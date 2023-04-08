@@ -27,7 +27,7 @@ public class DriverSetup {
     public static void close(){
         if (driver!= null) {
             driver.quit();
-            driver = null;
+           // driver = null;
         }
     }
 }
