@@ -6,13 +6,6 @@ import org.openqa.selenium.WebDriver;
 
 public class XistorePage {
     public static final String URL = "https://xistore.by/";
-    public static final String BTN_ENTER = "//a[@class='navigation-cabinet-link']";
-    public static final String INPUT_MAIL = "//input[@name='USER_LOGIN']";
-    public static final String INPUT_PASSWORD = "//input[@type='password']";
-    public static final String BTN_INTER_SUBMIT = "//input[@value='ВОЙТИ']";
-    public static final String BTN_CHECK_REGISTRATION = "/html/body/div[2]/div[1]/div/div/div/nav[3]/ul";
-    public static final String LINK_MAIL = "//span[@href='/personal/']";
-    public static final String LOGIN_WRONG_MAIL = "(//p//font[@class='errortext'])[1]";
     public static final String BTN_CATALOG_PHONE = "(//a[@href='/catalog/telefony/'])[2]";
     public static final String SELECTION_PHONE = "(//div[@class='accessories__block']/div)[1]";
     public static final String NAME_PHONE = "//*[@id='bx_2369550383_88441']/div/div[1]/div[3]/div[1]/div[1]/div[1]/h1";
