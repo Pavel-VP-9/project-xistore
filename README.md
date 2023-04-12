@@ -18,4 +18,4 @@
 
 ## Технологический стек
 
-Java, Selenium-java, Junit-jupiter, Rest-assured ,IntelliJ IDEA, Postman, Jenkins, Chrome DevTools, Github. 
+Java, Selenium-java, Junit-jupiter, Rest-assured ,IntelliJ IDEA, Postman, Chrome DevTools, Github. 
