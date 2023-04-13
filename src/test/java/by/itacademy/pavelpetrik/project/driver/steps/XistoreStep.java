@@ -1,9 +1,14 @@
-package steps;
+package by.itacademy.pavelpetrik.project.driver.steps;
 
+import by.itacademy.pavelpetrik.project.driver.pages.UserPage;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import pages.LoginPage;
-import pages.XistorePage;
+import by.itacademy.pavelpetrik.project.driver.pages.LoginPage;
+import by.itacademy.pavelpetrik.project.driver.pages.XistorePage;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class XistoreStep {
     WebDriver driver;
@@ -69,6 +74,16 @@ public class XistoreStep {
         driver.findElement(By.xpath(XistorePage.BTN_INPUT_CART)).click();
         String namePhoneInCart = driver.findElement(By.xpath(XistorePage.NAME_PHONE_IN_CART)).getText();
         return namePhoneInCart.contains(namePhone);
+
+    }
+
+    public String doProductSearch() {
+        driver.findElement(By.xpath(XistorePage.INPUT_NAME_PRODUCT)).sendKeys(UserPage.NAME_PRODUCT_FOR_SEARCH);
+        driver.findElement(By.xpath(XistorePage.BTN_SEARCH)).click();
+        List<WebElement> listLinkOfPhone = driver.findElements(By.xpath(XistorePage.LIST_LINK_MOBILE_PHONE));
+        Assertions.assertFalse(listLinkOfPhone.isEmpty());
+        String firstPhone = listLinkOfPhone.get(0).getText();
+        return firstPhone;
 
     }
 

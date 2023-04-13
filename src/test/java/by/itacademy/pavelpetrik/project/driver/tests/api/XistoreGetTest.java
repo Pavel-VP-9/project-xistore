@@ -1,4 +1,4 @@
-package tests;
+package by.itacademy.pavelpetrik.project.driver.tests.api;
 
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.Assertions;

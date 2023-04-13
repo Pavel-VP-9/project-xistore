@@ -1,4 +1,4 @@
-package driver;
+package by.itacademy.pavelpetrik.project.driver.driver;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

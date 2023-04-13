@@ -1,4 +1,4 @@
-package pages;
+package by.itacademy.pavelpetrik.project.driver.pages;
 
 public class UserPage {
 

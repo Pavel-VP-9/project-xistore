@@ -1,10 +1,10 @@
-package tests;
+package by.itacademy.pavelpetrik.project.driver.tests.ui;
 
-import driver.DriverSetup;
+import by.itacademy.pavelpetrik.project.driver.driver.DriverSetup;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
-import pages.XistorePage;
+import by.itacademy.pavelpetrik.project.driver.pages.XistorePage;
 
 public class BaseTest {
     WebDriver driver = DriverSetup.getDriver();

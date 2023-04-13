@@ -1,13 +1,14 @@
-package tests;
+package by.itacademy.pavelpetrik.project.driver.tests.ui;
 
-import driver.DriverSetup;
+import by.itacademy.pavelpetrik.project.driver.driver.DriverSetup;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pages.UserPage;
-import pages.XistorePage;
-import steps.XistoreStep;
+import by.itacademy.pavelpetrik.project.driver.pages.UserPage;
+import by.itacademy.pavelpetrik.project.driver.pages.XistorePage;
+import by.itacademy.pavelpetrik.project.driver.steps.XistoreStep;
+
 import java.util.List;
 
 public class XistoreTest extends BaseTest {
@@ -64,12 +65,17 @@ public class XistoreTest extends BaseTest {
     @Test
     @DisplayName("Поиск товара в поле (Что хотите купить) ")
     public void testProductSearch() {
-        WebElement inputNameProduct = driver.findElement(By.xpath(XistorePage.INPUT_NAME_PRODUCT));
-        inputNameProduct.sendKeys(UserPage.NAME_PRODUCT_FOR_SEARCH);
-        driver.findElement(By.xpath(XistorePage.BTN_SEARCH)).click();
-        List<WebElement> listLinkOfPhone = driver.findElements(By.xpath(XistorePage.LIST_LINK_MOBILE_PHONE));
-        Assertions.assertFalse(listLinkOfPhone.isEmpty());
-        String firstPhone = listLinkOfPhone.get(0).getText();
-        Assertions.assertTrue(firstPhone.contains(UserPage.NAME_PRODUCT_FOR_SEARCH));
+        XistoreStep xistoreStep=new XistoreStep(driver);
+       // System.out.println(xistoreStep.doProductSearch());
+       // System.out.println(UserPage.NAME_PRODUCT_FOR_SEARCH);
+        Assertions.assertTrue(xistoreStep.doProductSearch().contains(UserPage.NAME_PRODUCT_FOR_SEARCH));
+
+//        WebElement inputNameProduct = driver.findElement(By.xpath(XistorePage.INPUT_NAME_PRODUCT));
+//        inputNameProduct.sendKeys(UserPage.NAME_PRODUCT_FOR_SEARCH);
+//        driver.findElement(By.xpath(XistorePage.BTN_SEARCH)).click();
+//        List<WebElement> listLinkOfPhone = driver.findElements(By.xpath(XistorePage.LIST_LINK_MOBILE_PHONE));
+//        Assertions.assertFalse(listLinkOfPhone.isEmpty());
+//        String firstPhone = listLinkOfPhone.get(0).getText();
+//        Assertions.assertTrue(firstPhone.contains(UserPage.NAME_PRODUCT_FOR_SEARCH));
     }
 }
