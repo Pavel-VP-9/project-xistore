@@ -19,6 +19,7 @@ public class XistoreStep {
         loginPage.inputEmail(email);
         loginPage.inputPassword(password);
         loginPage.interSubmit();
+        loginPage.refreshPage();
         loginPage.checkRegistrashion();
     }
 

@@ -8,17 +8,11 @@ import org.openqa.selenium.WebElement;
 import pages.UserPage;
 import pages.XistorePage;
 import steps.XistoreStep;
-
 import java.util.List;
 
-public class XistoreTest {
+public class XistoreTest extends BaseTest {
 
     WebDriver driver = DriverSetup.getDriver();
-
-    @BeforeEach
-    public void warmUp() {
-        driver.get(XistorePage.URL);
-    }
 
     @Test
     @DisplayName("Проверка входа с корректными данными (электронная почта и пароль)")
@@ -77,10 +71,5 @@ public class XistoreTest {
         Assertions.assertFalse(listLinkOfPhone.isEmpty());
         String firstPhone = listLinkOfPhone.get(0).getText();
         Assertions.assertTrue(firstPhone.contains(UserPage.NAME_PRODUCT_FOR_SEARCH));
-    }
-
-    @AfterEach
-    public void closeDriver() {
-        DriverSetup.close();
     }
 }

@@ -9,7 +9,9 @@ public class LoginPage {
     public static final String INPUT_MAIL = "//input[@name='USER_LOGIN']";
     public static final String INPUT_PASSWORD = "//input[@type='password']";
     public static final String BTN_INTER_SUBMIT = "//input[@value='ВОЙТИ']";
-    public static final String BTN_CHECK_REGISTRATION = "/html/body/div[2]/div[1]/div/div/div/nav[3]/ul";
+   // public static final String BTN_CHECK_REGISTRATION = "/html/body/div[2]/div[1]/div/div/div/nav[3]/ul";
+    // public static final String BTN_CHECK_REGISTRATION = "//a[@data-toggle='dropdown'][@aria-expanded='true']";
+    public static final String BTN_CHECK_REGISTRATION = "//li//a[@data-toggle='dropdown'][@href='#']";
     public static final String LINK_MAIL = "//span[@href='/personal/']";
     public static final String LOGIN_WRONG_MAIL = "(//p//font[@class='errortext'])[1]";
 
@@ -41,5 +43,9 @@ public class LoginPage {
 
     public String getLabelError() {
         return driver.findElement(By.xpath(LOGIN_WRONG_MAIL)).getText();
+    }
+
+    public void refreshPage() {
+        DriverSetup.getDriver().navigate().refresh();
     }
 }

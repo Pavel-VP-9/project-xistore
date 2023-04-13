@@ -1,5 +1,6 @@
 package tests;
 
+import io.restassured.RestAssured;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,14 +14,14 @@ public class XistoreGetTest {
     @Test
     @DisplayName("Проверка возвращаемого значения statusCode(200)")
     public void testXistore1() {
-        when().get(BASIC_URL).
+        RestAssured.when().get(BASIC_URL).
                 then().assertThat().statusCode(200);
     }
     @Test
     @DisplayName("Поиск товара")
     public void testProductSearch() {
         String searchParam =SEARCH_PARAM+SEARCH_QUERY;
-        String response= when().get(BASIC_URL+searchParam).
+        String response= RestAssured.when().get(BASIC_URL+searchParam).
                 then().extract().response().asString();
         Assertions.assertTrue(response.contains(SEARCH_QUERY));
     }
